@@ -1,4 +1,3 @@
-mysqldump: [Warning] Using a password on the command line interface can be insecure.
 -- MySQL dump 10.13  Distrib 9.5.0, for macos15.4 (arm64)
 --
 -- Host: localhost    Database: exercise_tracker

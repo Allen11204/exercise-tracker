@@ -54,6 +54,31 @@ else
 fi
 
 echo ""
+
+# Check and install dependencies
+echo "⏳ Checking dependencies..."
+
+# UserPortal dependencies
+if [ ! -d "userPortal/node_modules" ]; then
+    echo "📦 Installing UserPortal dependencies..."
+    cd userPortal
+    npm install
+    cd ..
+else
+    echo "✓ UserPortal dependencies installed"
+fi
+
+# Web-Portal dependencies
+if [ ! -d "web-portal/node_modules" ]; then
+    echo "📦 Installing Web-Portal dependencies..."
+    cd web-portal
+    npm install
+    cd ..
+else
+    echo "✓ Web-Portal dependencies installed"
+fi
+
+echo ""
 echo "Starting services in background..."
 echo "Press Ctrl+C to stop all services"
 echo ""
@@ -101,7 +126,7 @@ echo ""
 # 2. Start UserPortal
 echo "[2/3] Starting UserPortal (Ionic)..."
 cd userPortal
-ionic serve --port 8100 --no-open > ../logs/userportal.log 2>&1 &
+npm run start -- --port 8100 > ../logs/userportal.log 2>&1 &
 cd ..
 
 echo "⏳ Waiting for UserPortal..."
