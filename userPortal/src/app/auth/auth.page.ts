@@ -40,8 +40,8 @@ export class AuthPage {
             color: 'success',
           })).present();
 
-          // ✅ 登录/注册成功后跳到 Tab1
-          this.router.navigateByUrl('/tabs/tab1');
+          // ✅ 登录/注册成功后跳到 Add Exercise 页面
+          this.router.navigateByUrl('/tabs/add');
         },
         error: async () => {
           (await this.toast.create({

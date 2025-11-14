@@ -209,17 +209,6 @@ export class Tab1Page implements OnInit {
 
     // 设置每日 23:59 的同步任务
     this.scheduleEndOfDaySync();
-
-    // 测试数据：如果没有记录，添加一条测试记录
-    if (this.records.length === 0) {
-      this.records.push({
-        type: 'RUN',
-        duration: 30,
-        when: new Date().toISOString(),
-        location: 'outside',
-        timezone: this.selectedTimezone
-      });
-    }
   }
 
   // 运动类型选择 - 切换展开/收起
@@ -418,6 +407,16 @@ export class Tab1Page implements OnInit {
    */
   saveRecordsToLocalStorage() {
     try {
+      const today = this.getTodayDateString();
+      const todayKey = `exercise_records_${today}`;
+
+      // 如果今天没有记录了，删除localStorage中的key
+      if (this.records.length === 0) {
+        localStorage.removeItem(todayKey);
+        console.log(`Removed ${todayKey} from localStorage (no records)`);
+        return;
+      }
+
       // 按日期分组
       const recordsByDate: { [date: string]: any[] } = {};
 
@@ -862,7 +861,7 @@ export class Tab1Page implements OnInit {
         {
           text: 'Delete',
           role: 'destructive',
-          handler: () => {
+          handler: async () => {
             // 从数组中删除记录
             this.records.splice(index, 1);
 
@@ -870,6 +869,14 @@ export class Tab1Page implements OnInit {
             this.saveRecordsToLocalStorage();
 
             console.log('Record deleted, remaining records:', this.records);
+
+            // 显示删除成功提示
+            const successAlert = await this.alertController.create({
+              header: 'Deleted',
+              message: 'Exercise record deleted successfully.',
+              buttons: ['OK']
+            });
+            await successAlert.present();
           }
         }
       ]
