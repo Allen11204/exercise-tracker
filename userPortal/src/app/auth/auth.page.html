@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login / Register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-segment [(ngModel)]="mode">
+    <ion-segment-button value="login">
+      <ion-label>Login</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="register">
+      <ion-label>Register</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-item class="ion-margin-top">
+    <ion-input
+      label="Username"
+      label-placement="floating"
+      [(ngModel)]="username">
+    </ion-input>
+  </ion-item>
+
+  <ion-item class="ion-margin-top">
+    <ion-input
+      label="Password"
+      label-placement="floating"
+      type="password"
+      [(ngModel)]="password">
+    </ion-input>
+  </ion-item>
+
+  <ion-button expand="block" class="ion-margin-top" (click)="onSubmit()">
+    {{ mode === 'login' ? 'Login' : 'Register' }}
+  </ion-button>
+</ion-content>
