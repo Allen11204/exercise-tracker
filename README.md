@@ -424,7 +424,3 @@ MIT License
 ## 📞 Contact
 
 For questions, please contact via GitHub Issues.
-
----
-
-**Good luck with your interview!** 🎉
