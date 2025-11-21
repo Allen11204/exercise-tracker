@@ -87,4 +87,11 @@ public class ItemInteractionService {
                 ))
                 .collect(Collectors.toList());
     }
+
+    @Transactional
+    public void deleteComment(Long commentId) {
+        ItemComment comment = itemCommentRepository.findById(commentId)
+                .orElseThrow(() -> new RuntimeException("Comment not found with id: " + commentId));
+        itemCommentRepository.delete(comment);
+    }
 }

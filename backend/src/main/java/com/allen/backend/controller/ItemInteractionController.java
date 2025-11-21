@@ -98,4 +98,16 @@ public class ItemInteractionController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @DeleteMapping("/comments/{commentId}")
+    public ResponseEntity<?> deleteComment(@PathVariable Long commentId) {
+        try {
+            itemInteractionService.deleteComment(commentId);
+            return ResponseEntity.ok("Comment deleted successfully");
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error deleting comment: " + e.getMessage());
+        }
+    }
 }

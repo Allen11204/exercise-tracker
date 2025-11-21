@@ -6,6 +6,7 @@ import { MainLayout } from './components/main-layout/main-layout';
 import { ShopItems } from './admin/shop-items/shop-items';
 import { Orders } from './admin/orders/orders';
 import { Users } from './admin/users/users';
+import { Comments } from './admin/comments/comments';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -19,6 +20,7 @@ export const routes: Routes = [
       { path: 'admin/shop-items', component: ShopItems },
       { path: 'admin/orders', component: Orders },
       { path: 'admin/users', component: Users },
+      { path: 'admin/comments', component: Comments },
     ]
   },
   { path: '**', redirectTo: '/login' }
